@@ -1,0 +1,59 @@
+@import '@assets/styles/variables.less';
+
+.footer {
+    .bg-paper();
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-xxl) 0 var(--spacing-lg);
+    margin-top: auto;
+    .transition-normal();
+
+    .footer-title {
+        .primary-color();
+        font-weight: var(--font-weight-bold);
+    }
+
+    .footer-links {
+        .flex-column();
+        gap: var(--spacing-sm);
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            .transition-normal();
+            width: fit-content;
+
+            &:hover {
+                .primary-color();
+            }
+        }
+    }
+
+    .footer-bottom {
+        .flex-between();
+        align-items: center;
+        margin-top: var(--spacing-xxl);
+        padding-top: var(--spacing-lg);
+        border-top: 1px solid var(--border-color);
+
+        .media-down-sm({
+            flex-direction: column;
+            gap: var(--spacing-md);
+            text-align: center;
+        });
+}
+
+.social-icons {
+    display: flex;
+    gap: var(--spacing-xs);
+
+    .MuiIconButton-root {
+        color: var(--text-primary);
+        .transition-normal();
+
+        &:hover {
+            .primary-color();
+            background-color: rgba(var(--primary-main-rgb), 0.1);
+        }
+    }
+}
+}

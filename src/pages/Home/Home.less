@@ -1,121 +1,117 @@
 @import '@assets/styles/variables.less';
 
 .home-page {
-    padding: 2rem 0;
-}
-
-.hero-section {
-    text-align: center;
-    padding: 3rem 0;
-    margin-bottom: 2rem;
-
-    .hero-title {
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: @primary-color;
-        background: linear-gradient(45deg, @primary-color, @secondary-color);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .hero-subtitle {
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-        color: lighten(@text-color, 20%);
-    }
-
-    .hero-description {
-        max-width: 800px;
-        margin: 0 auto 2rem;
-        font-size: 1.1rem;
-        line-height: 1.6;
-    }
-}
-
-.quick-info {
-    .info-card {
-        background: @background-color;
-        padding: 1.5rem;
-        border-radius: @border-radius;
-        .box-shadow(1);
-        height: 100%;
-        transition: all 0.3s ease;
-
-        &:hover {
-            .box-shadow(2);
-            transform: translateY(-2px);
-        }
-
-        h6 {
-            color: @primary-color;
-            font-weight: 600;
-        }
-    }
-}
-
-.skills-section {
-    .skills-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        justify-content: center;
-        margin-top: 1.5rem;
-
-        .skill-chip {
-            border-color: fade(@primary-color, 40%);
-            color: @primary-color;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-
-            &:hover {
-                background-color: fade(@primary-color, 10%);
-            }
-        }
-    }
-}
-
-.languages-section {
-    .language-card {
-        background: @background-color;
-        padding: 1.5rem 2rem;
-        border-radius: @border-radius;
-        .box-shadow(1);
-        text-align: center;
-        min-width: 120px;
-        transition: all 0.3s ease;
-
-        &:hover {
-            .box-shadow(2);
-        }
-
-        h6 {
-            color: @primary-color;
-            margin-bottom: 0.5rem;
-        }
-    }
-}
-
-.featured-projects {
-    .project-card-wrapper {
-        height: 100%;
-    }
-}
-
-@media (max-width: @breakpoint-md) {
     .hero-section {
-        padding: 2rem 0;
+        text-align: center;
+        padding: 3rem 0;
 
         .hero-title {
-            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+
+            @media (max-width: @breakpoint-md) {
+                font-size: 2.5rem;
+            }
+
+            @media (max-width: @breakpoint-sm) {
+                font-size: 2rem;
+            }
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+
+            @media (max-width: @breakpoint-md) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .hero-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
         }
     }
 
-    .skills-container {
-        justify-content: flex-start;
+    .quick-info {
+        .info-card {
+            background-color: var(--background-paper);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            .box-shadow(1);
+            height: 100%;
+            transition: all 0.3s ease;
+
+            &:hover {
+                .box-shadow(2);
+                transform: translateY(-2px);
+            }
+
+            h6 {
+                color: var(--primary-color);
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+    }
+
+    .skills-section {
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+
+            .skill-chip {
+                border-color: rgba(var(--primary-color-rgb), 0.4);
+                color: var(--primary-color);
+                font-weight: 500;
+
+                &:hover {
+                    background-color: rgba(var(--primary-color-rgb), 0.1);
+                }
+            }
+        }
+    }
+
+    .languages-section {
+        .language-card {
+            background-color: var(--background-paper);
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius);
+            .box-shadow(1);
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                .box-shadow(2);
+            }
+
+            h6 {
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    .featured-projects {
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
     }
 }

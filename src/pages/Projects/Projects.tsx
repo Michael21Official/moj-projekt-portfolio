@@ -1,23 +1,22 @@
 import { useState } from 'react';
 import {
-    Container,
     Typography,
-    Grid,
     TextField,
     InputAdornment,
     Chip,
     Box,
+    Button,
+    IconButton,
 } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { Search, Clear } from '@mui/icons-material';
 import { ProjectCard } from '@components/ui/ProjectCard';
 import './Projects.less';
 
-// Rozszerzone dane projektów
 const allProjects = [
     {
         id: 1,
         title: 'Sabre Poland - Microservices Development',
-        description: 'Design and development of microservices using Java/Spring, React with TypeScript, and LESS for styling.',
+        description: 'Design and development of microservices using Java/Spring, React with TypeScript, and LESS for styling. Implemented scalable backend services with Kanban methodology.',
         technologies: ['Java', 'Spring', 'React', 'TypeScript', 'LESS', 'Microservices', 'Kanban'],
         category: 'Professional',
         githubUrl: '#',
@@ -78,34 +77,46 @@ const Projects = () => {
         return matchesSearch && matchesCategory;
     });
 
+    const clearFilters = () => {
+        setSearchTerm('');
+        setSelectedCategory('All');
+    };
+
     return (
-        <Container maxWidth="lg">
-            <Box className="projects-page">
-                <Typography variant="h2" gutterBottom textAlign="center">
-                    My Projects
-                </Typography>
+        <Box className="projects-page">
+            <Typography variant="h2" gutterBottom textAlign="center">
+                My Projects
+            </Typography>
 
-                <Typography variant="body1" color="text.secondary" textAlign="center" mb={4}>
-                    A collection of my professional and personal projects
-                </Typography>
+            <Typography variant="body1" color="text.secondary" textAlign="center" mb={4}>
+                A collection of my professional and personal projects
+            </Typography>
 
-                {/* Filters */}
-                <Box className="filters-section" mb={4}>
-                    <TextField
-                        fullWidth
-                        placeholder="Search projects by name, description, or technology..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Search />
-                                </InputAdornment>
-                            ),
-                        }}
-                        sx={{ mb: 3 }}
-                    />
+            {/* Filters */}
+            <Box className="filters-section" mb={4}>
+                <TextField
+                    fullWidth
+                    placeholder="Search projects by name, description, or technology..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <Search />
+                            </InputAdornment>
+                        ),
+                        endAdornment: searchTerm && (
+                            <InputAdornment position="end">
+                                <IconButton size="small" onClick={() => setSearchTerm('')}>
+                                    <Clear />
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
+                    sx={{ mb: 3 }}
+                />
 
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                     <Box className="categories-container">
                         {categories.map((category) => (
                             <Chip
@@ -115,51 +126,82 @@ const Projects = () => {
                                 color={selectedCategory === category ? 'primary' : 'default'}
                                 variant={selectedCategory === category ? 'filled' : 'outlined'}
                                 className="category-chip"
+                                sx={{ mr: 1, mb: 1 }}
                             />
                         ))}
                     </Box>
+
+                    {(searchTerm || selectedCategory !== 'All') && (
+                        <Button
+                            startIcon={<Clear />}
+                            onClick={clearFilters}
+                            size="small"
+                            variant="outlined"
+                        >
+                            Clear Filters
+                        </Button>
+                    )}
                 </Box>
 
-                {/* Projects Grid */}
-                {filteredProjects.length > 0 ? (
-                    <Grid container spacing={4}>
-                        {filteredProjects.map((project) => (
-                            <Grid item xs={12} md={6} lg={4} key={project.id}>
-                                <ProjectCard project={project} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                ) : (
-                    <Box className="no-results" textAlign="center" py={8}>
-                        <Typography variant="h6" color="text.secondary">
-                            No projects found matching your criteria
-                        </Typography>
-                    </Box>
-                )}
+                <Typography variant="body2" color="text.secondary">
+                    Showing {filteredProjects.length} of {allProjects.length} projects
+                </Typography>
+            </Box>
 
-                {/* Stats */}
-                <Box className="stats-section" mt={6}>
-                    <Grid container spacing={3} justifyContent="center">
-                        <Grid item xs={6} sm={3}>
-                            <Box className="stat-card" textAlign="center">
-                                <Typography variant="h4" color="primary">
-                                    {allProjects.length}
-                                </Typography>
-                                <Typography variant="body2">Total Projects</Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={6} sm={3}>
-                            <Box className="stat-card" textAlign="center">
-                                <Typography variant="h4" color="primary">
-                                    {allProjects.filter(p => p.category === 'Professional').length}
-                                </Typography>
-                                <Typography variant="body2">Professional</Typography>
-                            </Box>
-                        </Grid>
-                    </Grid>
+            {/* Projects Grid - Box zamiast Grid */}
+            {filteredProjects.length > 0 ? (
+                <Box display="flex" flexWrap="wrap" gap={3}>
+                    {filteredProjects.map((project) => (
+                        <Box key={project.id} flex={{ xs: '1 1 100%', md: '1 1 48%', lg: '1 1 31%' }}>
+                            <ProjectCard project={project} />
+                        </Box>
+                    ))}
+                </Box>
+            ) : (
+                <Box className="no-results" textAlign="center" py={8}>
+                    <Typography variant="h6" color="text.secondary" gutterBottom>
+                        No projects found matching your criteria
+                    </Typography>
+                    <Button
+                        variant="outlined"
+                        onClick={clearFilters}
+                        startIcon={<Clear />}
+                    >
+                        Clear all filters
+                    </Button>
+                </Box>
+            )}
+
+            {/* Stats - Box zamiast Grid */}
+            <Box className="stats-section" mt={6}>
+                <Box display="flex" flexWrap="wrap" gap={3} justifyContent="center">
+                    <Box flex={{ xs: '1 1 40%', sm: '1 1 20%' }}>
+                        <Box className="stat-card" textAlign="center">
+                            <Typography variant="h3" color="primary" fontWeight={700}>
+                                {allProjects.length}
+                            </Typography>
+                            <Typography variant="body2">Total Projects</Typography>
+                        </Box>
+                    </Box>
+                    <Box flex={{ xs: '1 1 40%', sm: '1 1 20%' }}>
+                        <Box className="stat-card" textAlign="center">
+                            <Typography variant="h3" color="primary" fontWeight={700}>
+                                {allProjects.filter(p => p.category === 'Professional').length}
+                            </Typography>
+                            <Typography variant="body2">Professional</Typography>
+                        </Box>
+                    </Box>
+                    <Box flex={{ xs: '1 1 40%', sm: '1 1 20%' }}>
+                        <Box className="stat-card" textAlign="center">
+                            <Typography variant="h3" color="primary" fontWeight={700}>
+                                {allProjects.filter(p => p.category === 'Personal').length}
+                            </Typography>
+                            <Typography variant="body2">Personal</Typography>
+                        </Box>
+                    </Box>
                 </Box>
             </Box>
-        </Container>
+        </Box>
     );
 };
 

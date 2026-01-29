@@ -1,0 +1,59 @@
+@import '@assets/styles/variables.less';
+
+.contact-page {
+
+    .contact-info-card,
+    .contact-form-card {
+        transition: all 0.3s ease;
+        background-color: var(--background-paper);
+
+        &:hover {
+            .box-shadow(3);
+        }
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+
+        .MuiSvgIcon-root {
+            margin-top: 4px;
+            color: var(--primary-color);
+        }
+    }
+
+    .social-links {
+        .MuiButton-root {
+            min-width: 120px;
+            border-color: var(--border-color);
+            color: var(--text-primary);
+
+            &:hover {
+                border-color: var(--primary-color);
+                background-color: rgba(var(--primary-color-rgb), 0.1);
+            }
+        }
+    }
+
+    form {
+        .MuiTextField-root {
+            margin-bottom: 1rem;
+
+            .MuiInputLabel-root {
+                color: var(--text-secondary);
+            }
+
+            .MuiOutlinedInput-root {
+                color: var(--text-primary);
+
+                fieldset {
+                    border-color: var(--border-color);
+                }
+
+                &:hover fieldset {
+                    border-color: var(--primary-color);
+                }
+            }
+        }
+    }
+}

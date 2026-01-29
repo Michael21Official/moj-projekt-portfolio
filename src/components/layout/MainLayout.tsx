@@ -1,3 +1,4 @@
+// src/components/layout/MainLayout.tsx
 import { Outlet } from 'react-router-dom';
 import { Box, Container } from '@mui/material';
 import { Header } from './Header';
@@ -9,7 +10,8 @@ export const MainLayout = () => {
         <Box className="layout-container">
             <Header />
             <Box component="main" className="main-content">
-                <Container maxWidth="lg">
+                {/* Container TYLKO tutaj - to DOBRA PRAKTYKA */}
+                <Container maxWidth="lg" className="content-container">
                     <Outlet />
                 </Container>
             </Box>

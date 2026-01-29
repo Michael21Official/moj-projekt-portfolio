@@ -4,17 +4,21 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+
+    // UŻYWAJ CSS VARIABLES!
+    background-color: var(--background-paper);
+    color: var(--text-primary);
 
     &:hover {
         transform: translateY(-5px);
-        .box-shadow(3);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.14);
     }
 
     .project-image-container {
         height: 200px;
         overflow: hidden;
-        border-radius: @border-radius @border-radius 0 0;
+        border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 
         .project-image {
             width: 100%;
@@ -30,24 +34,30 @@
 
     .project-title {
         font-weight: 600;
-        color: @primary-color;
+        color: var(--primary-main);
     }
 
     .project-description {
         min-height: 60px;
+        color: var(--text-secondary);
     }
 
     .tech-chip {
-        background-color: fade(@primary-color, 10%);
-        border-color: fade(@primary-color, 30%);
-        color: @primary-color;
+        background-color: rgba(var(--primary-main-rgb), 0.1);
+        border-color: rgba(var(--primary-main-rgb), 0.3);
+        color: var(--primary-main);
         font-weight: 500;
+
+        &:hover {
+            background-color: rgba(var(--primary-main-rgb), 0.15);
+        }
     }
 
     .project-actions {
         margin-top: auto;
-        padding: 16px;
+        padding: var(--spacing-md);
         padding-top: 0;
         justify-content: space-between;
+        border-top: 1px solid var(--border-color);
     }
 }

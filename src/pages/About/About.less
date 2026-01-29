@@ -1,0 +1,27 @@
+@import '@assets/styles/variables.less';
+
+.about-page {
+    h2 {
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+    }
+
+    .profile-section,
+    .education-section,
+    .certificates-section {
+        transition: all 0.3s ease;
+        background-color: var(--background-paper);
+
+        &:hover {
+            .box-shadow(3);
+        }
+    }
+
+    ul {
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+    }
+}

@@ -1,10 +1,8 @@
-import { lazy } from 'react';
-import { Box, Typography, Button, Grid, Container, Stack, Chip } from '@mui/material';
+import { Box, Typography, Button, Stack, Chip } from '@mui/material';
 import { ArrowForward, Email, GitHub, LinkedIn } from '@mui/icons-material';
 import { ProjectCard } from '@components/ui/ProjectCard';
 import './Home.less';
 
-// Dane z Twojego CV
 const skills = [
     'Java', 'Spring', 'React', 'TypeScript', 'JavaScript',
     'Node.js', 'API', 'HTML5', 'MySQL', 'React Testing Library',
@@ -40,7 +38,7 @@ const featuredProjects = [
 
 const Home = () => {
     return (
-        <Container maxWidth="lg">
+        <Box className="home-page">
             {/* Hero Section */}
             <Box className="hero-section">
                 <Typography variant="h1" className="hero-title">
@@ -54,7 +52,7 @@ const Home = () => {
                     Passionate Full Stack Developer with experience in Java, Spring, React, TypeScript, and modern web technologies.
                 </Typography>
 
-                <Stack direction="row" spacing={2} justifyContent="center" mt={3}>
+                <Stack direction="row" spacing={2} justifyContent="center" mt={3} flexWrap="wrap">
                     <Button
                         variant="contained"
                         size="large"
@@ -84,28 +82,28 @@ const Home = () => {
                 </Stack>
             </Box>
 
-            {/* Quick Info Section */}
+            {/* Quick Info Section - Box zamiast Grid */}
             <Box className="quick-info" mt={6}>
-                <Grid container spacing={4}>
-                    <Grid item xs={12} md={4}>
+                <Box display="flex" flexWrap="wrap" gap={3}>
+                    <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
                             <Typography variant="h6" gutterBottom>📍 Location</Typography>
                             <Typography variant="body1">Krakow, Poland</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
+                    </Box>
+                    <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
                             <Typography variant="h6" gutterBottom>📞 Contact</Typography>
                             <Typography variant="body1">(+48) 578 742 682</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
+                    </Box>
+                    <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
                             <Typography variant="h6" gutterBottom>🎓 Education</Typography>
                             <Typography variant="body1">Master's Degree in Technical and IT Education (2024-2025)</Typography>
                         </Box>
-                    </Grid>
-                </Grid>
+                    </Box>
+                </Box>
             </Box>
 
             {/* Skills Section */}
@@ -125,18 +123,18 @@ const Home = () => {
                 </Box>
             </Box>
 
-            {/* Featured Projects */}
+            {/* Featured Projects - Box zamiast Grid */}
             <Box className="featured-projects" mt={6}>
                 <Typography variant="h2" gutterBottom textAlign="center">
                     Experience & Projects
                 </Typography>
-                <Grid container spacing={4} mt={2}>
+                <Box display="flex" flexWrap="wrap" gap={3} mt={2}>
                     {featuredProjects.map((project) => (
-                        <Grid item xs={12} md={6} lg={4} key={project.id}>
+                        <Box key={project.id} flex={{ xs: '1 1 100%', md: '1 1 48%', lg: '1 1 31%' }}>
                             <ProjectCard project={project} />
-                        </Grid>
+                        </Box>
                     ))}
-                </Grid>
+                </Box>
                 <Box textAlign="center" mt={4}>
                     <Button
                         variant="contained"
@@ -149,39 +147,39 @@ const Home = () => {
                 </Box>
             </Box>
 
-            {/* Languages Section */}
+            {/* Languages Section - Box zamiast Grid */}
             <Box className="languages-section" mt={6}>
                 <Typography variant="h2" gutterBottom textAlign="center">
                     Languages
                 </Typography>
-                <Grid container spacing={3} justifyContent="center">
-                    <Grid item>
+                <Box display="flex" flexWrap="wrap" gap={2} justifyContent="center" mt={2}>
+                    <Box>
                         <Box className="language-card">
                             <Typography variant="h6">Polish</Typography>
                             <Typography variant="body2" color="text.secondary">Native</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item>
+                    </Box>
+                    <Box>
                         <Box className="language-card">
                             <Typography variant="h6">English</Typography>
                             <Typography variant="body2" color="text.secondary">B2</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item>
+                    </Box>
+                    <Box>
                         <Box className="language-card">
                             <Typography variant="h6">Russian</Typography>
                             <Typography variant="body2" color="text.secondary">C1</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item>
+                    </Box>
+                    <Box>
                         <Box className="language-card">
                             <Typography variant="h6">Ukrainian</Typography>
                             <Typography variant="body2" color="text.secondary">Native</Typography>
                         </Box>
-                    </Grid>
-                </Grid>
+                    </Box>
+                </Box>
             </Box>
-        </Container>
+        </Box>
     );
 };
 

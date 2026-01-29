@@ -1,0 +1,48 @@
+@import '@assets/styles/variables.less';
+
+.projects-page {
+    .filters-section {
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+
+            .category-chip {
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    transform: translateY(-1px);
+                }
+            }
+        }
+    }
+
+    .no-results {
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h6 {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+    }
+
+    .stats-section {
+        .stat-card {
+            background-color: var(--background-paper);
+            padding: 2rem 1rem;
+            border-radius: var(--border-radius);
+            .box-shadow(1);
+            transition: all 0.3s ease;
+
+            &:hover {
+                .box-shadow(2);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
