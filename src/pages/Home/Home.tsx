@@ -1,7 +1,22 @@
-import { Box, Typography, Button, Stack, Chip } from '@mui/material';
-import { ArrowForward, Email, GitHub, LinkedIn } from '@mui/icons-material';
+import { Box, Typography, Button, Stack, Chip, Avatar, Link } from '@mui/material';
+import {
+    ArrowForward,
+    Email,
+    GitHub,
+    LinkedIn,
+    LocationOn,
+    Phone,
+    School,
+    Work,
+    CalendarToday,
+    Language
+} from '@mui/icons-material';
 import { ProjectCard } from '@components/ui/ProjectCard';
 import './Home.less';
+
+// Importy log uczelni (załóżmy, że dodałeś je do assets)
+import UKENLogo from '@assets/images/universities/uken_logo.png';
+import PKLogo from '@assets/images/universities/pk_logo.png';
 
 const skills = [
     'Java', 'Spring', 'React', 'TypeScript', 'JavaScript',
@@ -12,27 +27,27 @@ const skills = [
 const featuredProjects = [
     {
         id: 1,
-        title: 'Sabre Poland - Microservices Development',
+        title: 'Sabre Poland - Software Engineer',
         description: 'Design and development of microservices using Java/Spring, React with TypeScript, and LESS for styling. Implemented scalable backend services with Kanban methodology.',
-        technologies: ['Java', 'Spring', 'React', 'TypeScript', 'LESS', 'Microservices'],
-        githubUrl: '#',
-        liveUrl: '#',
+        technologies: ['Java', 'Spring', 'React', 'TypeScript', 'LESS', 'Microservices', 'Spring', 'Kanban'],
+        githubUrl: undefined,
+        liveUrl: 'https://www.sabre.com/locations/poland/',
     },
     {
         id: 2,
-        title: 'E-commerce Platform Management',
-        description: 'Managed e-commerce platform (Shopper) at Computer Alliance, shaping application architecture and user interfaces.',
-        technologies: ['React', 'JavaScript', 'E-commerce', 'Architecture'],
-        githubUrl: '#',
-        liveUrl: '#',
+        title: 'Innovative Didactic Tool - 3D Simulations',
+        description: 'The application combines advanced electromechanical phenomena simulations with interactive 3D visualizations using the Three.js library. It enables independent experimentation with machine parameters through an intuitive user interface.',
+        technologies: ['Three.js', 'WebGL', '3D', 'Simulations', 'Interactivity'],
+        githubUrl: 'https://github.com/Michael21Official/engines',
+        liveUrl: 'https://michael21official.github.io/engines/',
     },
     {
         id: 3,
         title: 'Android Applications Development',
         description: 'Created applications for Android platform at WPP Capital, participating in design process and interface development.',
         technologies: ['Android', 'Node.js', 'API', 'MySQL'],
-        githubUrl: '#',
-        liveUrl: '#',
+        githubUrl: undefined,
+        liveUrl: undefined,
     },
 ];
 
@@ -65,7 +80,7 @@ const Home = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<GitHub />}
-                        href="https://github.com/yourusername"
+                        href="https://github.com/Michael21Official"
                         target="_blank"
                     >
                         GitHub
@@ -74,7 +89,7 @@ const Home = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<LinkedIn />}
-                        href="https://linkedin.com/in/yourprofile"
+                        href="https://www.linkedin.com/in/micha%C5%82-matsalak-25123a22b/"
                         target="_blank"
                     >
                         LinkedIn
@@ -82,25 +97,101 @@ const Home = () => {
                 </Stack>
             </Box>
 
-            {/* Quick Info Section - Box zamiast Grid */}
+            {/* Quick Info Section - Ulepszona wersja */}
             <Box className="quick-info" mt={6}>
                 <Box display="flex" flexWrap="wrap" gap={3}>
+                    {/* Location Card */}
                     <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
-                            <Typography variant="h6" gutterBottom>📍 Location</Typography>
-                            <Typography variant="body1">Krakow, Poland</Typography>
+                            <Box display="flex" alignItems="center" gap={1} mb={1}>
+                                <LocationOn color="primary" />
+                                <Typography variant="h6">Location</Typography>
+                            </Box>
+                            <Typography variant="body1" fontWeight={500}>Krakow, Poland</Typography>
+                            <Typography variant="body2" color="text.secondary" mt={1}>
+                                🇵🇱 Available for remote work
+                            </Typography>
                         </Box>
                     </Box>
+
+                    {/* Contact Card */}
                     <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
-                            <Typography variant="h6" gutterBottom>📞 Contact</Typography>
-                            <Typography variant="body1">(+48) 578 742 682</Typography>
+                            <Box display="flex" alignItems="center" gap={1} mb={1}>
+                                <Phone color="primary" />
+                                <Typography variant="h6">Contact</Typography>
+                            </Box>
+                            <Typography variant="body1" fontWeight={500}>+48 578 742 682</Typography>
+                            <Link
+                                href="mailto:matsalakmichal@gmail.com"
+                                variant="body2"
+                                color="primary"
+                                sx={{ textDecoration: 'none', mt: 1, display: 'block' }}
+                            >
+                                matsakmichal@gmail.com
+                            </Link>
                         </Box>
                     </Box>
+
+                    {/* Education Card - Ulepszona z logami */}
                     <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
-                            <Typography variant="h6" gutterBottom>🎓 Education</Typography>
-                            <Typography variant="body1">Master's Degree in Technical and IT Education (2024-2025)</Typography>
+                            <Box display="flex" alignItems="center" gap={1} mb={2}>
+                                <School color="primary" />
+                                <Typography variant="h6">Education</Typography>
+                            </Box>
+
+                            <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                                <Box
+                                    component="img"
+                                    src={UKENLogo}
+                                    alt="UKEN"
+                                    sx={{
+                                        width: 40,
+                                        height: 40,
+                                        objectFit: 'contain',
+                                        borderRadius: '8px', // Zaokrąglone rogi
+                                        border: '1px solid',
+                                        borderColor: 'divider',
+                                        padding: '4px',
+                                        backgroundColor: 'white'
+                                    }}
+                                />
+                                <Box>
+                                    <Typography variant="body2" fontWeight={600}>
+                                        National Education Commission University
+                                    </Typography>
+                                    <Typography variant="caption" color="text.secondary">
+                                        Master's • 2024-2025
+                                    </Typography>
+                                </Box>
+                            </Box>
+
+                            <Box display="flex" alignItems="center" gap={1.5}>
+                                <Box
+                                    component="img"
+                                    src={PKLogo}
+                                    alt="PK"
+                                    sx={{
+                                        width: 40,
+                                        height: 40,
+                                        objectFit: 'contain',
+                                        borderRadius: '8px', // Zaokrąglone rogi
+                                        border: '1px solid',
+                                        borderColor: 'divider',
+                                        padding: '4px',
+                                        backgroundColor: 'white'
+                                    }}
+                                />
+                                <Box>
+                                    <Typography variant="body2" fontWeight={600}>
+                                        Cracow University of Technology
+                                    </Typography>
+                                    <Typography variant="caption" color="text.secondary">
+                                        Bachelor's • 2020-2024
+                                    </Typography>
+                                </Box>
+                            </Box>
                         </Box>
                     </Box>
                 </Box>
@@ -123,7 +214,7 @@ const Home = () => {
                 </Box>
             </Box>
 
-            {/* Featured Projects - Box zamiast Grid */}
+            {/* Featured Projects */}
             <Box className="featured-projects" mt={6}>
                 <Typography variant="h2" gutterBottom textAlign="center">
                     Experience & Projects
@@ -147,35 +238,31 @@ const Home = () => {
                 </Box>
             </Box>
 
-            {/* Languages Section - Box zamiast Grid */}
+            {/* Languages Section */}
             <Box className="languages-section" mt={6}>
                 <Typography variant="h2" gutterBottom textAlign="center">
                     Languages
                 </Typography>
                 <Box display="flex" flexWrap="wrap" gap={2} justifyContent="center" mt={2}>
-                    <Box>
-                        <Box className="language-card">
-                            <Typography variant="h6">Polish</Typography>
-                            <Typography variant="body2" color="text.secondary">Native</Typography>
-                        </Box>
+                    <Box className="language-card">
+                        <Typography variant="h5" className="language-flag">🇵🇱</Typography>
+                        <Typography variant="h6">Polish</Typography>
+                        <Typography variant="body2" color="text.secondary">Native</Typography>
                     </Box>
-                    <Box>
-                        <Box className="language-card">
-                            <Typography variant="h6">English</Typography>
-                            <Typography variant="body2" color="text.secondary">B2</Typography>
-                        </Box>
+                    <Box className="language-card">
+                        <Typography variant="h5" className="language-flag">🇬🇧</Typography>
+                        <Typography variant="h6">English</Typography>
+                        <Typography variant="body2" color="text.secondary">B2</Typography>
                     </Box>
-                    <Box>
-                        <Box className="language-card">
-                            <Typography variant="h6">Russian</Typography>
-                            <Typography variant="body2" color="text.secondary">C1</Typography>
-                        </Box>
+                    <Box className="language-card">
+                        <Typography variant="h5" className="language-flag">🇷🇺</Typography>
+                        <Typography variant="h6">Russian</Typography>
+                        <Typography variant="body2" color="text.secondary">C1</Typography>
                     </Box>
-                    <Box>
-                        <Box className="language-card">
-                            <Typography variant="h6">Ukrainian</Typography>
-                            <Typography variant="body2" color="text.secondary">Native</Typography>
-                        </Box>
+                    <Box className="language-card">
+                        <Typography variant="h5" className="language-flag">🇺🇦</Typography>
+                        <Typography variant="h6">Ukrainian</Typography>
+                        <Typography variant="body2" color="text.secondary">Native</Typography>
                     </Box>
                 </Box>
             </Box>

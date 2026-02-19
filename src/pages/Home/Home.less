@@ -8,7 +8,7 @@
         .hero-title {
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(45deg, var(--primary-main), var(--secondary-main));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -46,22 +46,23 @@
         .info-card {
             background-color: var(--background-paper);
             padding: 1.5rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-md);
             .box-shadow(1);
             height: 100%;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal) var(--transition-easing);
 
             &:hover {
                 .box-shadow(2);
-                transform: translateY(-2px);
+                transform: translateY(-4px);
             }
 
             h6 {
-                color: var(--primary-color);
+                color: var(--primary-main);
                 font-weight: 600;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
+            }
+
+            .MuiAvatar-root {
+                border: 2px solid var(--primary-main);
             }
         }
     }
@@ -75,12 +76,14 @@
             margin-top: 1.5rem;
 
             .skill-chip {
-                border-color: rgba(var(--primary-color-rgb), 0.4);
-                color: var(--primary-color);
+                border-color: rgba(var(--primary-main-rgb), 0.4);
+                color: var(--primary-main);
                 font-weight: 500;
+                transition: all var(--transition-fast) var(--transition-easing);
 
                 &:hover {
-                    background-color: rgba(var(--primary-color-rgb), 0.1);
+                    background-color: rgba(var(--primary-main-rgb), 0.1);
+                    transform: translateY(-2px);
                 }
             }
         }
@@ -89,20 +92,26 @@
     .languages-section {
         .language-card {
             background-color: var(--background-paper);
-            padding: 1.5rem 2rem;
-            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
             .box-shadow(1);
             text-align: center;
             min-width: 120px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal) var(--transition-easing);
 
             &:hover {
                 .box-shadow(2);
+                transform: translateY(-4px);
+            }
+
+            .language-flag {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
             }
 
             h6 {
-                color: var(--primary-color);
-                margin-bottom: 0.5rem;
+                color: var(--primary-main);
+                margin-bottom: 0.25rem;
             }
         }
     }
