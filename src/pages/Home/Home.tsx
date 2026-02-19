@@ -1,4 +1,4 @@
-import { Box, Typography, Button, Stack, Chip, Avatar, Link } from '@mui/material';
+import { Box, Typography, Button, Stack, Chip, Link } from '@mui/material';
 import {
     ArrowForward,
     Email,
