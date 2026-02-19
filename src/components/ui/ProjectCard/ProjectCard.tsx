@@ -8,9 +8,9 @@ import {
     Chip,
     Box,
     Stack,
-    Link,
 } from '@mui/material';
 import { GitHub, OpenInNew, Info } from '@mui/icons-material';
+import { trackProjectClick } from '../../../analytics/ga4';
 import './ProjectCard.less';
 
 export interface Project {
@@ -30,6 +30,22 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     const hasCode = !!project.githubUrl;
     const hasLive = !!project.liveUrl;
+
+    const handleCodeClick = () => {
+        if (project.githubUrl) {
+            trackProjectClick(project.title, 'code');
+        }
+    };
+
+    const handleLiveClick = () => {
+        if (project.liveUrl) {
+            if (hasCode) {
+                trackProjectClick(project.title, 'live');
+            } else {
+                trackProjectClick(project.title, 'about');
+            }
+        }
+    };
 
     // Jeśli nie ma żadnego linku - nie pokazuj CardActions
     if (!hasCode && !hasLive) {
@@ -112,47 +128,44 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     pt: 0
                 }}
             >
-                {hasCode && (
+                {hasCode && project.githubUrl && (
                     <Button
-                        component={Link}
                         size="small"
                         startIcon={<GitHub />}
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        underline="none"
+                        onClick={handleCodeClick}
                         sx={!hasLive ? { width: '100%' } : {}}
                     >
                         Code
                     </Button>
                 )}
 
-                {hasLive && !hasCode && (
+                {hasLive && !hasCode && project.liveUrl && (
                     <Button
-                        component={Link}
                         size="small"
                         startIcon={<Info />}
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         variant="contained"
-                        underline="none"
+                        onClick={handleLiveClick}
                         sx={{ width: '100%' }}
                     >
                         About
                     </Button>
                 )}
 
-                {hasLive && hasCode && (
+                {hasLive && hasCode && project.liveUrl && (
                     <Button
-                        component={Link}
                         size="small"
                         startIcon={<OpenInNew />}
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         variant="contained"
-                        underline="none"
+                        onClick={handleLiveClick}
                     >
                         Live Demo
                     </Button>

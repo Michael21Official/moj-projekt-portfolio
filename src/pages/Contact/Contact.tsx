@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { Email, Phone, LocationOn, Send } from '@mui/icons-material';
 import emailjs from '@emailjs/browser';
+import { trackContact, trackSocialClick } from '../../analytics/ga4'; // 👈 Dodaj import
 import './Contact.less';
 
 // === KONFIGURACJA EMAILJS ===
@@ -41,6 +42,7 @@ const Contact = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        trackContact('form'); // 👈 Śledź wysłanie formularza
 
         if (!formRef.current) {
             console.error('Form ref is null');
@@ -137,6 +139,10 @@ const Contact = () => {
         setSnackbar({ ...snackbar, open: false });
     };
 
+    const handleSocialClick = (platform: 'github' | 'linkedin') => {
+        trackSocialClick(platform); // 👈 Śledź kliknięcia social media
+    };
+
     return (
         <Box className="contact-page">
             <Typography variant="h2" gutterBottom textAlign="center">
@@ -184,6 +190,7 @@ const Contact = () => {
                                 variant="outlined"
                                 href="https://github.com/Michael21Official"
                                 target="_blank"
+                                onClick={() => handleSocialClick('github')} // 👈 Dodaj onClick
                                 sx={{ mr: 2 }}
                             >
                                 GitHub
@@ -192,6 +199,7 @@ const Contact = () => {
                                 variant="outlined"
                                 href="https://www.linkedin.com/in/micha%C5%82-matsalak-25123a22b/"
                                 target="_blank"
+                                onClick={() => handleSocialClick('linkedin')} // 👈 Dodaj onClick
                             >
                                 LinkedIn
                             </Button>

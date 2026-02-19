@@ -9,9 +9,10 @@ import {
     School
 } from '@mui/icons-material';
 import { ProjectCard } from '@components/ui/ProjectCard';
+import { trackSkillClick, trackLanguageClick } from '../../analytics/ga4'; // 👈 Dodaj import
 import './Home.less';
 
-// Importy log uczelni (załóżmy, że dodałeś je do assets)
+// Importy log uczelni
 import UKENLogo from '@assets/images/universities/uken_logo.png';
 import PKLogo from '@assets/images/universities/pk_logo.png';
 
@@ -49,6 +50,14 @@ const featuredProjects = [
 ];
 
 const Home = () => {
+    const handleSkillClick = (skill: string) => {
+        trackSkillClick(skill); // 👈 Śledź kliknięcia w umiejętności
+    };
+
+    const handleLanguageClick = (language: string) => {
+        trackLanguageClick(language); // 👈 Śledź kliknięcia w języki
+    };
+
     return (
         <Box className="home-page">
             {/* Hero Section */}
@@ -94,7 +103,7 @@ const Home = () => {
                 </Stack>
             </Box>
 
-            {/* Quick Info Section - Ulepszona wersja */}
+            {/* Quick Info Section */}
             <Box className="quick-info" mt={6}>
                 <Box display="flex" flexWrap="wrap" gap={3}>
                     {/* Location Card */}
@@ -130,7 +139,7 @@ const Home = () => {
                         </Box>
                     </Box>
 
-                    {/* Education Card - Ulepszona z logami */}
+                    {/* Education Card */}
                     <Box flex={{ xs: '1 1 100%', sm: '1 1 30%' }}>
                         <Box className="info-card">
                             <Box display="flex" alignItems="center" gap={1} mb={2}>
@@ -147,7 +156,7 @@ const Home = () => {
                                         width: 40,
                                         height: 40,
                                         objectFit: 'contain',
-                                        borderRadius: '8px', // Zaokrąglone rogi
+                                        borderRadius: '8px',
                                         border: '1px solid',
                                         borderColor: 'divider',
                                         padding: '4px',
@@ -173,7 +182,7 @@ const Home = () => {
                                         width: 40,
                                         height: 40,
                                         objectFit: 'contain',
-                                        borderRadius: '8px', // Zaokrąglone rogi
+                                        borderRadius: '8px',
                                         border: '1px solid',
                                         borderColor: 'divider',
                                         padding: '4px',
@@ -206,6 +215,7 @@ const Home = () => {
                             label={skill}
                             className="skill-chip"
                             variant="outlined"
+                            onClick={() => handleSkillClick(skill)} // 👈 Dodaj onClick
                         />
                     ))}
                 </Box>
@@ -241,22 +251,38 @@ const Home = () => {
                     Languages
                 </Typography>
                 <Box display="flex" flexWrap="wrap" gap={2} justifyContent="center" mt={2}>
-                    <Box className="language-card">
+                    <Box
+                        className="language-card"
+                        onClick={() => handleLanguageClick('Polish')} // 👈 Dodaj onClick
+                        sx={{ cursor: 'pointer' }}
+                    >
                         <Typography variant="h5" className="language-flag">🇵🇱</Typography>
                         <Typography variant="h6">Polish</Typography>
                         <Typography variant="body2" color="text.secondary">Native</Typography>
                     </Box>
-                    <Box className="language-card">
+                    <Box
+                        className="language-card"
+                        onClick={() => handleLanguageClick('English')} // 👈 Dodaj onClick
+                        sx={{ cursor: 'pointer' }}
+                    >
                         <Typography variant="h5" className="language-flag">🇬🇧</Typography>
                         <Typography variant="h6">English</Typography>
                         <Typography variant="body2" color="text.secondary">B2</Typography>
                     </Box>
-                    <Box className="language-card">
+                    <Box
+                        className="language-card"
+                        onClick={() => handleLanguageClick('Russian')} // 👈 Dodaj onClick
+                        sx={{ cursor: 'pointer' }}
+                    >
                         <Typography variant="h5" className="language-flag">🇷🇺</Typography>
                         <Typography variant="h6">Russian</Typography>
                         <Typography variant="body2" color="text.secondary">C1</Typography>
                     </Box>
-                    <Box className="language-card">
+                    <Box
+                        className="language-card"
+                        onClick={() => handleLanguageClick('Ukrainian')} // 👈 Dodaj onClick
+                        sx={{ cursor: 'pointer' }}
+                    >
                         <Typography variant="h5" className="language-flag">🇺🇦</Typography>
                         <Typography variant="h6">Ukrainian</Typography>
                         <Typography variant="body2" color="text.secondary">Native</Typography>
