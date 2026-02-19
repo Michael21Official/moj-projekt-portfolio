@@ -6,10 +6,7 @@ import {
     LinkedIn,
     LocationOn,
     Phone,
-    School,
-    Work,
-    CalendarToday,
-    Language
+    School
 } from '@mui/icons-material';
 import { ProjectCard } from '@components/ui/ProjectCard';
 import './Home.less';
