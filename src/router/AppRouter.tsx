@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { MainLayout } from '@components/layout/MainLayout';
 import { LoadingSpinner } from '@components/common/LoadingSpinner';
 
@@ -11,7 +11,7 @@ const Contact = lazy(() => import('@pages/Contact/Contact'));
 
 export const AppRouter = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Suspense fallback={<LoadingSpinner />}>
                 <Routes>
                     <Route path="/" element={<MainLayout />}>
@@ -22,6 +22,6 @@ export const AppRouter = () => {
                     </Route>
                 </Routes>
             </Suspense>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
