@@ -9,41 +9,43 @@ import {
     School
 } from '@mui/icons-material';
 import { ProjectCard } from '@components/ui/ProjectCard';
-import { trackSkillClick, trackLanguageClick } from '../../analytics/ga4'; // 👈 Dodaj import
+import { trackSkillClick, trackLanguageClick } from '../../analytics/ga4';
 import './Home.less';
 
 // Importy log uczelni
 import UKENLogo from '@assets/images/universities/uken_logo.png';
 import PKLogo from '@assets/images/universities/pk_logo.png';
 
-const skills = [
-    'Java', 'Spring', 'React', 'TypeScript', 'JavaScript',
-    'Node.js', 'API', 'HTML5', 'MySQL', 'React Testing Library',
-    'JUnit', 'Git', 'Kanban'
-];
+const skills = {
+    frontend: ['JavaScript', 'TypeScript', 'React', 'HTML5', 'React Testing Library'],
+    backend: ['Java', 'Spring Boot', 'REST API', 'Node.js', 'MySQL', 'JUnit'],
+    devops: ['AWS', 'CI/CD'],
+    tools: ['Git', 'Scrum', 'Kanban', 'Figma', 'Maven'],
+    additional: ['Google Analytics', 'PageSpeed Insights', 'EmailJS']
+};
 
 const featuredProjects = [
     {
         id: 1,
         title: 'Sabre Poland - Software Engineer',
-        description: 'Design and development of microservices using Java/Spring, React with TypeScript, and LESS for styling. Implemented scalable backend services with Kanban methodology.',
-        technologies: ['Java', 'Spring', 'React', 'TypeScript', 'LESS', 'Microservices', 'Spring', 'Kanban'],
+        description: 'Design and development of microservices using Java/Spring Boot, React with TypeScript. Implementing scalable backend services with Kanban methodology in the travel technology sector.',
+        technologies: ['Java', 'Spring Boot', 'React', 'TypeScript', 'LESS', 'Microservices', 'Kanban'],
         githubUrl: undefined,
         liveUrl: 'https://www.sabre.com/locations/poland/',
     },
     {
         id: 2,
         title: 'Innovative Didactic Tool - 3D Simulations',
-        description: 'The application combines advanced electromechanical phenomena simulations with interactive 3D visualizations using the Three.js library. It enables independent experimentation with machine parameters through an intuitive user interface.',
-        technologies: ['Three.js', 'WebGL', '3D', 'Simulations', 'Interactivity'],
+        description: 'Application combining advanced electromechanical phenomena simulations with interactive 3D visualizations using Three.js. Enables independent experimentation with machine parameters through an intuitive user interface.',
+        technologies: ['Three.js', 'WebGL', '3D', 'Simulations', 'Interactivity', 'React'],
         githubUrl: 'https://github.com/Michael21Official/engines',
         liveUrl: 'https://michael21official.github.io/engines/',
     },
     {
         id: 3,
         title: 'Android Applications Development',
-        description: 'Created applications for Android platform at WPP Capital, participating in design process and interface development.',
-        technologies: ['Android', 'Node.js', 'API', 'MySQL'],
+        description: 'Created applications for Android platform, participating in design process and interface development. Collaborated with cross-functional teams.',
+        technologies: ['Android', 'Node.js', 'API', 'MySQL', 'Java'],
         githubUrl: undefined,
         liveUrl: undefined,
     },
@@ -51,11 +53,11 @@ const featuredProjects = [
 
 const Home = () => {
     const handleSkillClick = (skill: string) => {
-        trackSkillClick(skill); // 👈 Śledź kliknięcia w umiejętności
+        trackSkillClick(skill);
     };
 
     const handleLanguageClick = (language: string) => {
-        trackLanguageClick(language); // 👈 Śledź kliknięcia w języki
+        trackLanguageClick(language);
     };
 
     return (
@@ -69,8 +71,9 @@ const Home = () => {
                     Software Engineer | Full Stack Developer
                 </Typography>
                 <Typography variant="body1" className="hero-description">
-                    Software Engineer and student at the National Education Commission University in Krakow.
-                    Passionate Full Stack Developer with experience in Java, Spring, React, TypeScript, and modern web technologies.
+                    Software Engineer with 2+ years of professional experience in full-stack development.
+                    Core competencies include building front-end applications with TypeScript and React,
+                    and developing robust back-end services using Java and Spring Boot.
                 </Typography>
 
                 <Stack direction="row" spacing={2} justifyContent="center" mt={3} flexWrap="wrap">
@@ -203,21 +206,85 @@ const Home = () => {
                 </Box>
             </Box>
 
-            {/* Skills Section */}
+            {/* Skills Section - Podzielona na kategorie */}
             <Box className="skills-section" mt={6}>
                 <Typography variant="h2" gutterBottom textAlign="center">
                     Technical Skills
                 </Typography>
-                <Box className="skills-container">
-                    {skills.map((skill, index) => (
-                        <Chip
-                            key={index}
-                            label={skill}
-                            className="skill-chip"
-                            variant="outlined"
-                            onClick={() => handleSkillClick(skill)} // 👈 Dodaj onClick
-                        />
-                    ))}
+
+                <Box sx={{ mb: 4 }}>
+                    <Typography variant="h5" color="primary" gutterBottom align="center">Frontend</Typography>
+                    <Box className="skills-container">
+                        {skills.frontend.map((skill, index) => (
+                            <Chip
+                                key={index}
+                                label={skill}
+                                className="skill-chip"
+                                variant="outlined"
+                                onClick={() => handleSkillClick(skill)}
+                            />
+                        ))}
+                    </Box>
+                </Box>
+
+                <Box sx={{ mb: 4 }}>
+                    <Typography variant="h5" color="primary" gutterBottom align="center">Backend</Typography>
+                    <Box className="skills-container">
+                        {skills.backend.map((skill, index) => (
+                            <Chip
+                                key={index}
+                                label={skill}
+                                className="skill-chip"
+                                variant="outlined"
+                                onClick={() => handleSkillClick(skill)}
+                            />
+                        ))}
+                    </Box>
+                </Box>
+
+                <Box sx={{ mb: 4 }}>
+                    <Typography variant="h5" color="primary" gutterBottom align="center">DevOps & Cloud</Typography>
+                    <Box className="skills-container">
+                        {skills.devops.map((skill, index) => (
+                            <Chip
+                                key={index}
+                                label={skill}
+                                className="skill-chip"
+                                variant="outlined"
+                                onClick={() => handleSkillClick(skill)}
+                            />
+                        ))}
+                    </Box>
+                </Box>
+
+                <Box sx={{ mb: 4 }}>
+                    <Typography variant="h5" color="primary" gutterBottom align="center">Tools & Workflow</Typography>
+                    <Box className="skills-container">
+                        {skills.tools.map((skill, index) => (
+                            <Chip
+                                key={index}
+                                label={skill}
+                                className="skill-chip"
+                                variant="outlined"
+                                onClick={() => handleSkillClick(skill)}
+                            />
+                        ))}
+                    </Box>
+                </Box>
+
+                <Box>
+                    <Typography variant="h5" color="primary" gutterBottom align="center">Additional Skills</Typography>
+                    <Box className="skills-container">
+                        {skills.additional.map((skill, index) => (
+                            <Chip
+                                key={index}
+                                label={skill}
+                                className="skill-chip"
+                                variant="outlined"
+                                onClick={() => handleSkillClick(skill)}
+                            />
+                        ))}
+                    </Box>
                 </Box>
             </Box>
 
@@ -253,7 +320,7 @@ const Home = () => {
                 <Box display="flex" flexWrap="wrap" gap={2} justifyContent="center" mt={2}>
                     <Box
                         className="language-card"
-                        onClick={() => handleLanguageClick('Polish')} // 👈 Dodaj onClick
+                        onClick={() => handleLanguageClick('Polish')}
                         sx={{ cursor: 'pointer' }}
                     >
                         <Typography variant="h5" className="language-flag">🇵🇱</Typography>
@@ -262,7 +329,7 @@ const Home = () => {
                     </Box>
                     <Box
                         className="language-card"
-                        onClick={() => handleLanguageClick('English')} // 👈 Dodaj onClick
+                        onClick={() => handleLanguageClick('English')}
                         sx={{ cursor: 'pointer' }}
                     >
                         <Typography variant="h5" className="language-flag">🇬🇧</Typography>
@@ -271,7 +338,7 @@ const Home = () => {
                     </Box>
                     <Box
                         className="language-card"
-                        onClick={() => handleLanguageClick('Russian')} // 👈 Dodaj onClick
+                        onClick={() => handleLanguageClick('Russian')}
                         sx={{ cursor: 'pointer' }}
                     >
                         <Typography variant="h5" className="language-flag">🇷🇺</Typography>
@@ -280,7 +347,7 @@ const Home = () => {
                     </Box>
                     <Box
                         className="language-card"
-                        onClick={() => handleLanguageClick('Ukrainian')} // 👈 Dodaj onClick
+                        onClick={() => handleLanguageClick('Ukrainian')}
                         sx={{ cursor: 'pointer' }}
                     >
                         <Typography variant="h5" className="language-flag">🇺🇦</Typography>
