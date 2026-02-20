@@ -5,9 +5,12 @@ import {
     Typography,
     IconButton,
     Link,
+    Avatar,
 } from '@mui/material';
 import { GitHub, LinkedIn, Email } from '@mui/icons-material';
 import './Footer.less';
+
+import logo from '@assets/images/logo.png';
 
 export const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
@@ -17,12 +20,43 @@ export const Footer: React.FC = () => {
             <Container maxWidth="lg">
                 <Box display="flex" flexWrap="wrap" gap={4} mb={4}>
                     <Box flex={{ xs: '1 1 100%', md: '1 1 48%' }}>
-                        <Typography variant="h6" gutterBottom className="footer-title">
-                            Michał Matsalak
-                        </Typography>
+                        <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                            <Avatar
+                                src={logo}
+                                alt="Michał Matsalak"
+                                variant="rounded"
+                                onError={() => console.log('Logo failed to load:', logo)}
+                                imgProps={{
+                                    onError: () => console.log('Image failed to load')
+                                }}
+                                sx={{
+                                    width: 44,
+                                    height: 44,
+                                    borderRadius: '10px',
+                                    border: '2px solid',
+                                    borderColor: 'primary.main',
+                                    backgroundColor: 'white',
+                                    boxShadow: 2,
+                                    '& img': {
+                                        objectFit: 'contain',
+                                        padding: '6px'
+                                    }
+                                }}
+                            >
+                                <Typography variant="h6">MM</Typography>
+                            </Avatar>
+                            <Box>
+                                <Typography variant="h6" className="footer-title">
+                                    Michał Matsalak
+                                </Typography>
+                                <Typography variant="caption" color="text.secondary">
+                                    Software Engineer
+                                </Typography>
+                            </Box>
+                        </Box>
                         <Typography variant="body2" color="text.secondary">
-                            Software Engineer & Full Stack Developer passionate about creating
-                            exceptional digital experiences with modern technologies.
+                            Software Engineer with 2+ years of experience in full-stack development.
+                            Specializing in Java, Spring Boot, React, and TypeScript.
                         </Typography>
                     </Box>
 
@@ -47,7 +81,7 @@ export const Footer: React.FC = () => {
                     <Box className="social-icons">
                         <IconButton
                             aria-label="GitHub"
-                            href="https://github.com/yourusername"
+                            href="https://github.com/Michael21Official"
                             target="_blank"
                             size="small"
                         >
@@ -55,7 +89,7 @@ export const Footer: React.FC = () => {
                         </IconButton>
                         <IconButton
                             aria-label="LinkedIn"
-                            href="https://linkedin.com/in/yourprofile"
+                            href="https://www.linkedin.com/in/micha%C5%82-matsalak-25123a22b/"
                             target="_blank"
                             size="small"
                         >
