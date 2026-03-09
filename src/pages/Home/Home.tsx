@@ -71,7 +71,7 @@ const Home = () => {
                     Software Engineer | Full Stack Developer
                 </Typography>
                 <Typography variant="body1" className="hero-description">
-                    Software Engineer with 2+ years of professional experience in full-stack development.
+                    Software Engineer with 3 years of professional experience in full-stack development.
                     Core competencies include building front-end applications with TypeScript and React,
                     and developing robust back-end services using Java and Spring Boot.
                 </Typography>

@@ -21,7 +21,7 @@ const About = () => {
                     Professional Profile
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    Software Engineer with 2+ years of professional experience in full-stack development.
+                    Software Engineer with 3 years of professional experience in full-stack development.
                     Core competencies include building front-end applications with TypeScript and React,
                     and developing robust back-end services using Java and Spring Boot. Proficient in
                     essential tools like Maven and Git. Currently contributing to high-impact projects

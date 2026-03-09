@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
                             </Box>
                         </Box>
                         <Typography variant="body2" color="text.secondary">
-                            Software Engineer with 2+ years of experience in full-stack development.
+                            Software Engineer with 3 years of experience in full-stack development.
                             Specializing in Java, Spring Boot, React, and TypeScript.
                         </Typography>
                     </Box>
