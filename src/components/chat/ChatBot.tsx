@@ -207,19 +207,32 @@ export const ChatBot: React.FC = () => {
                             </Box>
                         )}
 
+                        {/* 👇 Alert do wyświetlania błędów - teraz używany! */}
                         {error && (
-                            <Paper
-                                elevation={1}
+                            <Alert
+                                severity="error"
                                 sx={{
-                                    p: 2,
-                                    bgcolor: 'error.light',
-                                    color: 'error.contrastText',
+                                    mb: 2,
                                     borderRadius: 2,
-                                    mb: 2
+                                    '& .MuiAlert-message': {
+                                        width: '100%'
+                                    }
                                 }}
+                                action={
+                                    <IconButton
+                                        aria-label="close"
+                                        color="inherit"
+                                        size="small"
+                                        onClick={() => {/* Możesz dodać funkcję zamykania */ }}
+                                    >
+                                        <CloseIcon fontSize="inherit" />
+                                    </IconButton>
+                                }
                             >
-                                <Typography variant="body2">{error}</Typography>
-                            </Paper>
+                                <Typography variant="body2">
+                                    {error}
+                                </Typography>
+                            </Alert>
                         )}
 
                         <div ref={messagesEndRef} />
